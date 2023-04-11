@@ -65,17 +65,22 @@ function doRegister() {
             "operation": "create_user",
             "payload": {
               "Item": {
-                "username": registerUserName,
-                "password": registerPassword
+                "username": registerUserName.value,
+                "password": registerPassword.value
               }
             }
           }),
         dataType: 'json',
         contentType: "application/json",
          success: function(result,status,jqXHR ){
+          if(result.body){
             alert("Welcome to Cash Register Manager");
             window.localStorage.setItem("isLoggedIn",true);
             document.location = "index.html"
+          }else{
+              alert("Something went Wrong. Please try again!");
+          }
+            
          },
          error(jqXHR, textStatus, errorThrown){
             alert("Something went Wrong. Please try again!");
